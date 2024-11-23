@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Sapa Menggunakan AJAX</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+input[type=text] {
+  width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+  <h1>Form Sapa Menggunakan AJAX</h1>
+  <form id="form-sapa">
+    <input type="text" id="nama" placeholder="ISI" required>
+    <button type="submit">Kirim</button>
+  </form>
+  <div id="hasil"></div>
+
+  <script>
+    $(document).ready(function() {
+      $('#form-sapa').submit(function(e) {
+        e.preventDefault();
+
+        var nama = $('#nama').val();
+
+        $.ajax({
+          type: 'POST',
+          url: 'sapa.php',
+          data: { nama: nama },
+          success: function(data) {
+            $('#hasil').html(data);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
